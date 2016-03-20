@@ -58,7 +58,7 @@
 
 因为这个样板项目是一个计算器应用，你可能要检查它是否能正确执行加法、减法、乘法和除法操作，并测试其他计算器功能。因为测试被编译到了应用项目里面，不管你的需求多复杂，你都可以按照你的需求添加所有的上下文和其他所需信息来执行测试。举个例子，我们将 `#import` 和实例变量声明插入到了 `SampleCalcTests.m` 文件中。
 
-```
+```objective-c
 #import <XCTest/XCTest.h>
 
 //
@@ -92,7 +92,7 @@
 
 接下来给测试方法一个描述性的名称，比如 `testAddition`，然后添加到方法的实现[^5]源代码中。
 
-```
+```objective-c
 - (void) testAddition
 
 {
@@ -150,7 +150,7 @@ Xcode 在活跃的测试包的所有测试类中一次运行一个测试方法�
 
 `setUp` 和 `tearDown` 很简单。在 `Mac_Calc_Tests.m` 中的 `testAddition` 源代码里 ，将四行以 `// obtain the app variable for test access` 开头的代码剪切下来，并将它们粘贴到模板提供的默认的 `setUp` 实例方法中。
 
-```
+```objective-c
 - (void)setUp
 
 {
