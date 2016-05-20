@@ -10,9 +10,9 @@
 
 上面的测试导航展示了一个样板项目中的测试包、类和方法的分级表。这个项目是一个示例计算器应用。计算器引擎作为一个框架实现。你可以在分级表的顶部看到用于测试应用代码 `SampleCalcTests` 测试包。
 
-> **注意**: Xcode的测试目标会生成测试包并显示在测试导航栏中。
+> **注意：**Xcode的测试目标会生成测试包并显示在测试导航栏中。
 
-> 如果你的测试使用存储数据文件、图片，和其他类似的类型，则可以把它们添加到测试包中，并使用 `NSBundle` 的API在运行时访问。和测试类一同使用 `+[NSBundle bundleForClass:]` 保证测试类从正确的包中取得数据。更多的信息可见 [NSBundle Class Reference](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSBundle_Class/index.html#//apple_ref/doc/uid/TP40003624).
+> 如果你的测试使用存储数据文件、图片，和其他类似的类型，则可以把它们添加到测试包中，并使用 `NSBundle` 的API在运行时访问。和测试类一同使用 `+[NSBundle bundleForClass:]` 保证测试类从正确的包中取得数据。更多的信息可见 [NSBundle Class Reference](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSBundle_Class/index.html#//apple_ref/doc/uid/TP40003624)。
 
 > Xcode 方案[^4]控制编译的内容。方案也可以控制可用的测试方法来执行测试操作。你可以在测试导航面板列表中通过 Control+单击 项目来启用或禁用测试包、类和方法，或者从快捷菜单中启用或者关闭测试，此外还可以在方案中启用或者关闭测试。
 
@@ -60,33 +60,19 @@
 
 ```objective-c
 #import <XCTest/XCTest.h>
-
 //
-
 // Import the application specific header files
-
 #import "CalcViewController.h"
-
 #import "CalcAppDelegate.h"
-
  
-
 @interface CalcTests : XCTestCase {
-
 // add instance variables to the CalcTests class
-
 @private
-
     NSApplication       *app;
-
     CalcAppDelegate     *appDelegate;
-
     CalcViewController  *calcViewController;
-
     NSView              *calcView;
-
 }
-
 @end
 ```
 
@@ -94,45 +80,27 @@
 
 ```objective-c
 - (void) testAddition
-
 {
-
    // obtain the app variables for test access
-
    app                  = [NSApplication sharedApplication];
-
    calcViewController   = (CalcViewController*)[[NSApplication sharedApplication] delegate];
-
    calcView             = calcViewController.view;
-
  
-
    // perform two addition tests
-
    [calcViewController press:[calcView viewWithTag: 6]];  // 6
-
    [calcViewController press:[calcView viewWithTag:13]];  // +
-
    [calcViewController press:[calcView viewWithTag: 2]];  // 2
-
    [calcViewController press:[calcView viewWithTag:12]];  // =
-
     XCTAssertEqualObjects([calcViewController.displayField stringValue], @"8", @"Part 1 failed.");
-
  
-
    [calcViewController press:[calcView viewWithTag:13]];  // +
-
    [calcViewController press:[calcView viewWithTag: 2]];  // 2
-
    [calcViewController press:[calcView viewWithTag:12]];  // =
-
     XCTAssertEqualObjects([calcViewController.displayField stringValue], @"10", @"Part 2 failed.");
-
 }
 ```
 
-注意测试导航的列表的改变反应了模板测试方法 `testExample` 已经被替换为`testAddition`。
+注意测试导航的列表的改变反应了模板测试方法 `testExample` 已经被替换为 `testAddition`。
 
 ![2-9](https://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/testing_with_xcode/Art/twx-qs-8_2x.png)
 
@@ -152,23 +120,14 @@ Xcode 在活跃的测试包的所有测试类中一次运行一个测试方法�
 
 ```objective-c
 - (void)setUp
-
 {
-
     [super setUp];
-
     // Put setup code here. This method is called before the invocation of each test method in the class.
-
  
-
    // obtain the app variables for test access
-
    app                  = [NSApplication sharedApplication];
-
    calcViewController   = (CalcViewController*)[[NSApplication sharedApplication] delegate];
-
    calcView             = calcViewController.view;
-
 }
 ```
 
@@ -176,16 +135,13 @@ Xcode 在活跃的测试包的所有测试类中一次运行一个测试方法�
 
 ![2-12](https://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/testing_with_xcode/Art/twx-qs-10_2x.png)
 
-##总结
+## 总结
 当你看完这篇简短的快速开始，会发现向项目添加测试很简单。这里有几个要注意的地方:
 
-1.Xcode配置好了大部分基本的测试设置。当你添加一个新的测试目标，Xcode 会自动将它添加到相关的产品目标的方案中。在测试导航中你会找到目标中包含一个初始化的有一个测试方法的测试类。
-
-2.测试导航面板可以很方便的定位和编辑测试方法。你可以使用导航面板里的指示按钮快速运行测试，或在测试类实现打开时直接在资源编辑器中运行。当测试失败，测试导航面板中的标识跟源码编辑器中错误的地方会相互对应。
-
-3.单个测试方法可以包括多个断言，导致单个通过或失败结果。这个途径可让你根据项目需要创建简单或者非常复杂的测试。
-
-4.`setUp` 和 `tearDown` 实例方法为你提供了一种途径来把相同的代码用在很多个测试方法中，从而获得更高的一致性，并简化调试。
+1. Xcode配置好了大部分基本的测试设置。当你添加一个新的测试目标，Xcode 会自动将它添加到相关的产品目标的方案中。在测试导航中你会找到目标中包含一个初始化的有一个测试方法的测试类。
+2. 测试导航面板可以很方便的定位和编辑测试方法。你可以使用导航面板里的指示按钮快速运行测试，或在测试类实现打开时直接在资源编辑器中运行。当测试失败，测试导航面板中的标识跟源码编辑器中错误的地方会相互对应。
+3. 单个测试方法可以包括多个断言，导致单个通过或失败结果。这个途径可让你根据项目需要创建简单或者非常复杂的测试。
+4. `setUp` 和 `tearDown` 实例方法为你提供了一种途径来把相同的代码用在很多个测试方法中，从而获得更高的一致性，并简化调试。
 
 
 [^1]: 测试导航：Test navigator

@@ -2,11 +2,9 @@
 
 在开发过程中除了以交互方式运行测试外，还可以充分利用服务器进行自动化测试。
 
-![](https://developer.apple.com/library/mac/documentation/DeveloperTools/Conceptual/testing_with_xcode/art/bot_viewer-summary_2x.png)
-
 ## 基于服务器的持续集成测试
 
-`Xcode` 测试具有交互性，它能确保您的代码在其指定的需求下不偏离正确的轨道，并且可以很简单地找到并修复 bug 。一系列快速运行的功能测试不仅可以校正你的开发，还可以让你高效率自信地构建一款健壮的应用程序。
+Xcode 测试具有交互性，它能确保您的代码在其指定的需求下不偏离正确的轨道，并且可以很简单地找到并修复 bug 。一系列快速运行的功能测试不仅可以校正你的开发，还可以让你高效率自信地构建一款健壮的应用程序。
  
 这就是说，成功的开发项目往往超出单个开发人员实现和维护的能力范围。像源码管理，服务器上的自动化测试可让你顺利高效地根据团队的需要进行开发工作。
 
@@ -24,7 +22,7 @@
 
 ### 使用 xcodebuild 运行测试
 
-`xcodebuild` 命令行工具像 Xcode IDE 一样驱动测试。用 `test` 行为运行`xcodebuil` 测试，并用 `-destination` 参数指定不同的测试目的。例如，要在本地 OS X "My Mac 64 Bit" 测试 MyApp，使用如下命令来指定目标和架构：
+`xcodebuild` 命令行工具像 Xcode IDE 一样驱动测试。用 `test` 行为运行 `xcodebuil` 测试，并用 `-destination` 参数指定不同的测试目的。例如，要在本地 OS X "My Mac 64 Bit" 测试 MyApp，使用如下命令来指定目标和架构：
 
 ```
 > xcodebuild test -project MyAppProject.xcodeproj -scheme MyApp -destination 'platform=OS X,arch=x86_64'
@@ -42,7 +40,7 @@
 > xcodebuild test -project MyAppProject.xcodeproj -scheme MyApp -destination 'platform=Simulator,name=iPhone,OS=8.1'
 ```	
 
- `-destination` 参数可以被连接在一起，这样你只需使用一个命令，就可以跨目标进行指定集成共享方案。例如，下面的命令把之前的三个例子合并到一个命令中:
+`-destination` 参数可以被连接在一起，这样你只需使用一个命令，就可以跨目标进行指定集成共享方案。例如，下面的命令把之前的三个例子合并到一个命令中:
 
 ```
 > xcodebuild test -project MyAppProject.xcodeproj -scheme MyApp
